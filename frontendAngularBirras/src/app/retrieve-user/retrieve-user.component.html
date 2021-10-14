@@ -1,0 +1,58 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card>
+    <mat-card-header>
+
+    </mat-card-header>
+    <mat-card-content>
+{{"aclaracionRecuperoDeUsuario1" | translate}}
+<br/>
+{{"aclaracionRecuperoDeUsuario2" | translate}}
+
+
+        <section class='container'>
+            <div class='row'>
+                <div class="col text-center">
+                    <mat-form-field class="w-50">
+                        <input matInput  placeholder="E-mail"
+                        formControlName="email" name="email" autocomplete='off' maxlength="20" [errorStateMatcher]="matcher"/>
+                        <mat-error *ngIf="email.hasError('required')">
+                            {{"mailRequerido" | translate}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </section>
+        <section class='container'>
+            <div class='row'>
+                <div class="col text-center">
+                    {{user}}
+                </div>
+            </div>
+        </section>
+        
+    </mat-card-content>
+    <mat-card-actions>
+        <section class='container'>
+            <div class='row'>
+                <div class="col-md-12 text-center">
+                    <button mat-raised-button type="submit">{{"buscarUsuario" | translate}}</button>
+                </div>
+            </div>
+        </section>
+    </mat-card-actions>
+
+    <section class='container'>
+        <div class='row'>
+            <div class="col-12 text-center">
+                <a href="/login" class="enlace"> {{"irALogin" | translate}} </a>
+            </div>
+        </div>
+    </section>
+    </mat-card>
+
+</form>
+    
+    
+    
+    
+    

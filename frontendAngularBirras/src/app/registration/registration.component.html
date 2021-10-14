@@ -1,0 +1,86 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card>
+    <mat-card-header>
+
+    </mat-card-header>
+    <mat-card-content>
+        <section class='container'>
+            <div class='row'>
+                <div class="col text-center">
+                    <mat-form-field class="w-50">
+                        <input matInput  placeholder="{{'placeholderUsuario' | translate}}"
+                        formControlName="user" name="user" autocomplete='off' maxlength="20" [errorStateMatcher]="matcher"/>
+                        <mat-error *ngIf="user.hasError('required')">
+                            {{"usuarioRequerido" | translate}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </section>
+        <section class='container'>
+            <div class='row'>
+                <div class="col text-center">
+                    <mat-form-field class="w-50">
+                        <input matInput  placeholder="{{'placeholderNombre' | translate}}"
+                        formControlName="name" name="name" autocomplete='off' maxlength="100" [errorStateMatcher]="matcher"/>
+                        <mat-error *ngIf="name.hasError('required')">
+                            {{"nombreRequerido" | translate}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </section>
+        <section class='container'>
+            <div class='row'>
+                <div class="col text-center">
+                    <mat-form-field class="w-50">
+                        <input matInput  placeholder="mail"
+                        formControlName="email" name="email" autocomplete='off' maxlength="255" [errorStateMatcher]="matcher"/>
+                        <mat-error *ngIf="name.hasError('required')">
+                            {{"mailRequerido" | translate}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </section>
+        <section class='container'>
+            <div class='row'>
+                <div class="col text-center">
+                    <mat-form-field class="w-50">
+                        <input matInput
+                        placeholder="{{'placeholderClave' | translate}}" formControlName="password" name="password" [errorStateMatcher]="matcher"
+                        autocomplete="off" maxlength="15" />
+                        <mat-error *ngIf="password.hasError('required')">
+                            {{"claveRequerida" | translate}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </section>
+        
+    </mat-card-content>
+    <mat-card-actions>
+        <section class='container'>
+            <div class='row'>
+                <div class="col-md-12 text-center">
+                    <button mat-raised-button type="submit">{{"registrarUsuario" | translate}}</button>
+                </div>
+            </div>
+        </section>
+    </mat-card-actions>
+    <section class='container'>
+        <div class='row'>
+            <div class="col-12 text-center">
+                <a href="/login" class="enlace"> {{"irALogin" | translate}} </a>
+            </div>
+        </div>
+    </section>
+
+    </mat-card>
+
+</form>
+    
+    
+    
+    
+    

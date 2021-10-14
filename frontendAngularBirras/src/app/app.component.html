@@ -1,0 +1,32 @@
+<header>
+  <mat-toolbar color="primary">
+    <span>Birras Project</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" >
+      <mat-label *ngIf="loggedIn()" (click) = "logOut()">log out</mat-label>
+    </button>
+  </mat-toolbar>
+</header>
+<!--
+<section class='container'>
+  <div class='row'>
+    <mat-card class="col-md-6">
+      UNO
+    </mat-card>
+    <mat-card class="col-md-6">
+      DOS
+    </mat-card>
+    <mat-card class="col-md-6">
+      TRES
+    </mat-card>
+    <mat-card class="col-md-6">
+      CUATRO
+    </mat-card>
+  </div>
+</section>
+
+<button mat-button>Basic</button>
+-->
+
+
+<router-outlet></router-outlet>

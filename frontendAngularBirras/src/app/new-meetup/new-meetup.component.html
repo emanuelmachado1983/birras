@@ -1,0 +1,90 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card>
+        <mat-card-header>
+            <section class='container'>
+                <div >
+                    <div class="col-12 text-right" style="text-align:right">
+                        <button mat-raised-button (click)="goToMeetups()">{{"volver" | translate}}</button>
+                    </div>
+                </div>
+            </section>
+        </mat-card-header>
+    </mat-card>
+
+    <mat-card>
+    <mat-card-header>
+
+    </mat-card-header>
+    <mat-card-content>
+        <section class='container'>
+            <div class='row'>
+                <div class="col text-center">
+                    <mat-form-field class="w-50">
+                        <input matInput  placeholder="{{'nombreDeLaMeetup' | translate}}"
+                        formControlName="name" name="name" autocomplete='off' maxlength="20" [errorStateMatcher]="matcher"/>
+                        <mat-error *ngIf="name.hasError('required')">
+                            {{"meetupRequerida" | translate}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </section>
+        <section class='container'>
+            <div class='row'>
+                <div class="col text-center">
+                    <mat-form-field class="w-50">
+                        <input matInput  placeholder="{{'direccion' | translate}}"
+                        formControlName="address" name="address" autocomplete='off' maxlength="20" [errorStateMatcher]="matcher"/>
+                        <mat-error *ngIf="address.hasError('required')">
+                            {{"direccionRequerida" | translate}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </section>
+        <section class='container'>
+            <div class='row'>
+                <div class="col text-center">
+                    <mat-form-field class="w-50">
+                        <input matInput  placeholder="{{'fechaMeetup' | translate}}"
+                        formControlName="dateMeetup" name="dateMeetup" autocomplete='off' maxlength="20" [errorStateMatcher]="matcher"/>
+                        <mat-error *ngIf="address.hasError('required')">
+                            {{"fechaRequerida" | translate}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </section>
+        <section class='container'>
+            <div class='row'>
+                <div class="col text-center">
+                    <mat-form-field class="w-50">
+                        <input matInput type="number" placeholder="{{'horasQueresQueDureMeetup' | translate}}"
+                        formControlName="hours" name="hours" autocomplete='off' maxlength="255" [errorStateMatcher]="matcher"/>
+                        <mat-error *ngIf="name.hasError('horas')">
+                            {{"horasRequeridas" | translate}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </section>
+        
+    </mat-card-content>
+    <mat-card-actions>
+        <section class='container'>
+            <div class='row'>
+                <div class="col-md-12 text-center">
+                    <button mat-raised-button type="submit">{{"guardar" | translate}}</button>
+                </div>
+            </div>
+        </section>
+    </mat-card-actions>
+
+    </mat-card>
+
+</form>
+    
+    
+    
+    
+    

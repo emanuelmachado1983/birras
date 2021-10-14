@@ -1,0 +1,166 @@
+
+<mat-card *ngIf="administrador">
+    <mat-card-header>
+        <section class='container'>
+            <div >
+                <div class="col-12 text-right" style="text-align:right">
+                    <button mat-raised-button (click)="goToNewMeetup()">{{"nuevaMeetup" | translate}}</button>
+                </div>
+            </div>
+        </section>
+    </mat-card-header>
+</mat-card>
+
+<mat-card *ngIf="!invitado">
+    <mat-card-header>
+        {{"noEstoyInvitadoAningunaMeetup" | translate}}
+    </mat-card-header>
+</mat-card>
+
+<mat-card *ngIf="invitado">
+<mat-card-header>
+    {{"meetupsDondeEstoyInvitado" | translate}}
+</mat-card-header>
+<mat-card-content>
+    <section class='container'>
+        <div class='row table-head'>
+            <div class="font-weight-bold d-none d-md-inline col-12 col-md-3">
+                {{"tituloTablaNombre" | translate}}
+            </div>
+            <div class="font-weight-bold d-none d-md-inline col-12 col-md-3">
+                {{"tituloTablaFecha" | translate}}
+            </div>
+            <div class="font-weight-bold d-none d-md-inline col-12 col-md-1">
+                {{"tituloTablaCantidadHoras" | translate}}
+            </div>
+            <div class="font-weight-bold d-none d-md-inline col-12 col-md-2">
+                {{"tituloTablaDireccion" | translate}}
+            </div>
+            <div class="font-weight-bold d-none d-md-inline col-12 col-md-3">
+            </div>
+        </div>
+        <div *ngFor="let meetupIam of resIam">
+            <div class='row striped' *ngIf="meetupIam.newOne">
+                <div class="col-12 col-md-3">
+                    {{meetupIam.name}}
+                </div>
+                <div class="col-12 col-md-3">
+                    {{meetupIam.dateFrom}}
+                </div>
+                <div class="col-12 col-md-1">
+                    {{meetupIam.hours}}
+                </div>
+                <div class="col-12 col-md-2">
+                    {{meetupIam.address}}
+                </div>
+                <div class="col-12 col-md-3">
+                    <button class ="mb-1" mat-raised-button (click)="deleteFromMeetup(meetupIam.id)"> {{"rowTablaSalirme" | translate}}</button> &nbsp;
+                    <button class ="mb-1" mat-raised-button *ngIf="administrador" (click)="goToAdministrateMeetup(meetupIam.id)">{{"rowTablaAdministrar" | translate}}</button>
+                    <button mat-raised-button *ngIf="meetupIam.canCheck" (click)="chekInOut(meetupIam.idMeetupUser)">
+                        <span *ngIf="meetupIam.checked">CHECK-IN</span>
+                        <span *ngIf="!meetupIam.checked">CHECK-OUT</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</mat-card-content>
+</mat-card>
+<mat-card>
+    <mat-card-header>
+        {{"meetupsNoDondeEstoyInvitado" | translate}}
+    </mat-card-header>
+    <mat-card-content>
+        <section class='container'>
+            <div class='row table-head'>
+                <div class="font-weight-bold d-none d-md-inline col-12 col-md-3">
+                    {{"tituloTablaNombre" | translate}}
+                </div>
+                <div class="font-weight-bold d-none d-md-inline col-12 col-md-3">
+                    {{"tituloTablaFecha" | translate}}
+                </div>
+                <div class="font-weight-bold d-none d-md-inline col-12 col-md-1">
+                    {{"tituloTablaCantidadHoras" | translate}}
+                </div>
+                <div class="font-weight-bold d-none d-md-inline col-12 col-md-2">
+                    {{"tituloTablaDireccion" | translate}}
+                </div>
+                <div class="font-weight-bold d-none d-md-inline col-12 col-md-3">
+                </div>
+            </div>
+            <div *ngFor="let meetupNotIam of resNotIam">
+                <div class='row striped'>
+                    <div class="col-12 col-md-3">
+                        {{meetupNotIam.name}}
+                    </div>
+                    <div class="col-12 col-md-3">
+                        {{meetupNotIam.dateFrom}}
+                    </div>
+                    <div class="col-12 col-md-1">
+                        {{meetupNotIam.hours}}
+                    </div>
+                    <div class="col-12 col-md-2">
+                        {{meetupNotIam.address}}
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <button mat-raised-button (click)="addToMeetup(meetupNotIam.id)">{{"rowTablaAgregarme" | translate}}</button> &nbsp;
+                        <button mat-raised-button *ngIf="administrador" (click)="goToAdministrateMeetup(meetupNotIam.id)">{{"rowTablaAdministrar" | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </mat-card-content>
+
+</mat-card>
+
+
+<mat-card *ngIf="invitadoOld">
+    <mat-card-header>
+        {{"meetupsDondeFuiInvitado" | translate}}
+    </mat-card-header>
+    <mat-card-content>
+        <section class='container'>
+            <div class='row table-head'>
+                <div class="font-weight-bold d-none d-md-inline col-12 col-md-3">
+                    {{"tituloTablaNombre" | translate}}
+                </div>
+                <div class="font-weight-bold d-none d-md-inline col-12 col-md-3">
+                    {{"tituloTablaFecha" | translate}}
+                </div>
+                <div class="font-weight-bold d-none d-md-inline col-12 col-md-1">
+                    {{"tituloTablaCantidadHoras" | translate}}
+                </div>
+                <div class="font-weight-bold d-none d-md-inline col-12 col-md-2">
+                    {{"tituloTablaDireccion" | translate}}
+                </div>
+                <div class="font-weight-bold d-none d-md-inline col-12 col-md-3">
+                </div>
+            </div>
+            <div *ngFor="let meetupIam of resIam">
+                <div class='row striped' *ngIf="!meetupIam.newOne">
+                    <div class="col-12 col-md-3">
+                        {{meetupIam.name}}
+                    </div>
+                    <div class="col-12 col-md-3">
+                        {{meetupIam.dateFrom}}
+                    </div>
+                    <div class="col-12 col-md-1">
+                        {{meetupIam.hours}}
+                    </div>
+                    <div class="col-12 col-md-2">
+                        {{meetupIam.address}}
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <button mat-raised-button *ngIf="meetupIam.canCheck" (click)="chekInOut(meetupIam.idMeetupUser)">
+                            <span *ngIf="meetupIam.checked">CHECK-IN</span>
+                            <span *ngIf="!meetupIam.checked">CHECK-OUT</span>
+                        </button>
+                        
+                    </div>
+    
+                </div>
+            </div>
+        </section>
+    </mat-card-content>
+    </mat-card>
+
