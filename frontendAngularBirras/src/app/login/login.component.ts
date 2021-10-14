@@ -45,6 +45,18 @@ export class LoginComponent implements OnInit {
     
   }
 
+  goToChangePassword() {
+    this.router.navigate(["changePassword"]);
+  }
+
+  goToRetrieveUser() {
+    this.router.navigate(["retrieveUser"]);
+  }
+
+  goToRegistration() {
+    this.router.navigate(["registration"]);
+  }
+  
   onSubmit(): void {
     if (this.form.valid) {
       this.apiService.login(this.user.value, this.password.value).subscribe(

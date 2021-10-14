@@ -36,6 +36,10 @@ export class RetrieveUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  goToLogin() {
+    this.router.navigate(["login"]);
+  }
+
   onSubmit(): void {
     if (this.form.valid) {
       this.apiService.retrieveUserByEmail(this.email.value).subscribe(

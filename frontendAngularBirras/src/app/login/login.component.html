@@ -45,18 +45,19 @@
 
     <section class='container'>
         <div class='row'>
-            <div class="col-6" style="text-align:right">
-                <a href="/changePassword" class="enlace"> {{"recuperarClave" | translate}} </a>
+            <div class="col-6" style="text-align:right; cursor: pointer">
+                <a (click) = "goToChangePassword()" class="enlace"> {{"recuperarClave" | translate}} </a>
             </div>
-            <div class="col-6">
-                <a href="/retrieveUser" class="enlace"> {{"recuperarUsuario" | translate}} </a>
+            <div class="col-6" style="cursor: pointer">
+                <a (click) = "goToRetrieveUser()" class="enlace"> {{"recuperarUsuario" | translate}} </a>
             </div>
+            
         </div>
     </section>
     <section class='container'>
         <div class='row'>
-            <div class="col-12 text-center">
-                <a href="/registration" class="enlace"> {{"registrarUsuario" | translate}} </a>
+            <div class="col-12 text-center ">
+                <a (click) = "goToRegistration()" class="enlace" style="cursor: pointer"> {{"registrarUsuario" | translate}} </a>
             </div>
         </div>
     </section>

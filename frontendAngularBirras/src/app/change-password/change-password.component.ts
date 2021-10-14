@@ -38,7 +38,11 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
+  goToLogin() {
+    this.router.navigate(["login"]);
+  }
+  
   onSubmit(): void {
     console.log("ema");
     if (this.form.valid) {

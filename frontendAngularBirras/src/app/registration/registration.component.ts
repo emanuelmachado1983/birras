@@ -46,6 +46,10 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  goToLogin() {
+    this.router.navigate(["login"]);
+  }
+
   onSubmit(): void {
     if (this.form.valid) {
       this.apiService.postRegistrar(this.user.value, this.email.value, this.name.value, this.password.value).subscribe(
