@@ -17,7 +17,7 @@ En heroku se puede hacer deploy automático. Se podría hacer como hacemos en el
 -Como admin quiero saber cuántas cajas de birras tengo que comprar para poder aprovisionar la meetup: 
 Esta se puede ver cuando entras con el admin y haces clic en el botón "administrar" en alguna de las meetup generadas. Para no pegarle tanto a la api de temperaturas lo que hago es guardarla en una tabla. 
 Me guardo el momento en que la grabé en la base, y si al otro día el usuario vuelve a fijarse cuántas cervezas necesita, vuelve a llamar a la api. O sea te guardo el valor en la base por un día.
-Tomé la temperatura máxima para hacer el cálculo de cajas ya que la idea es redondear para arriba.
+Tomé la temperatura máxima para hacer el cálculo de cajas ya que la idea es redondear para arriba. Una última aclaración con respecto a esto es que tomo la temperatura de Buenos Aires nomás. Me hubiera gustado hacer algo como para que se seleccione la provincia donde se hace la meeting y que a partir de ahí te guarde la temperatura, pero eso me hubiera llevado más tiempo.
 
 -Como admin y usuario quiero conocer la temperatura del día de la meetup para saber si va a hacer calor o no.
 
