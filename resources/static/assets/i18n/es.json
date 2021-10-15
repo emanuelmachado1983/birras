@@ -42,6 +42,8 @@
     "cantidadCajasBirra": "Cantidad de cajas de birra",
     "noSePudoObtenerLaTemperatura": "No se pudo obtener la temperatura.",
     "TenerEnCuentaTemperatura": "Tené en cuenta que si la fecha es de más de 16 días, capaz que todavía la temperatura no la tenemos.",
+    "aclaracionAlertNoHayTemperatura": "No se pudo obtener la temperatura. Tené en cuenta que si la fecha es de más de 16 días, capaz que todavía la temperatura no la tenemos.",
+    "aclaracionAlertHayTemperatura": "La temperatura en esa meetup va a ser de: ",
     "aclaracionRecuperoDeUsuario1": "Aclaración importante: Esto debería mandar un mail al usuario con el nombre del usuario.",
     "aclaracionRecuperoDeUsuario2": "No lo mandaría a prod así. Le mandaría un mail como corresponde al usuario. Me faltó tiempo.",
     "aclaracionModificarPassword1" : "Aclaración importante: Esto debería mandar un mail al usuario con un token para que pueda modificar la pass.",

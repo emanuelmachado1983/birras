@@ -41,6 +41,8 @@ import com.emanuel.birras.utils.ApiError;
 import com.emanuel.birras.utils.JWTUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 
 @RestController
 @RequestMapping("api/meetups/")
@@ -88,7 +90,7 @@ public class MeetupREST {
 		return ResponseEntity.ok(resp);
 	}
 	
-	LinkedHashMap<String, Object> quantityBirras(List<Temperature> t, Integer sizeMeetup) {
+	LinkedHashMap<String, Object> quantityBirras(List<Temperature> t, Integer sizeMeetup, User user ) {
 		Double quantityBirras = 0.0;
 		quantityBirras = (t.get(0).getTemperature() < 20) ? 0.75 * sizeMeetup.doubleValue() : quantityBirras;
 		quantityBirras = (t.get(0).getTemperature() >= 20) && (t.get(0).getTemperature() <= 24) ? 1 * sizeMeetup.doubleValue() : quantityBirras;
@@ -98,8 +100,10 @@ public class MeetupREST {
 		
 		LinkedHashMap<String, Object> resp = new LinkedHashMap<String, Object>();
 		resp.put("temperature", t.get(0).getTemperature());
-		resp.put("quantityBoxBirras", quantityBoxBirras.intValue());
 		
+		if (user.getIsAdmin() != null  && user.getIsAdmin()) {
+			resp.put("quantityBoxBirras", quantityBoxBirras.intValue());	
+		}
 		return resp;
 	}
 	
@@ -120,9 +124,17 @@ public class MeetupREST {
 	}
 	
 	@GetMapping(value = "temperature/{idMeetup}")
-	private ResponseEntity<Object> getTemperatureMeetup(@PathVariable ("idMeetup") Long idMeetup) {
-		
+	private ResponseEntity<Object> getTemperatureMeetup(@PathVariable ("idMeetup") Long idMeetup, @RequestHeader(value="Authorization") String token) {
 		//TODO: this must to be refactorized. Must to correct the warnings too.
+		
+		try {
+			if (jwtUtil.getKey(token)==null) { return ResponseEntity.status(HttpStatus.FORBIDDEN).build(); }	
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+		}
+		
+		String id = jwtUtil.getKey(token);
+		Optional<User> userAux = UserServiceImpl.findById(Long.parseLong(id));
 		
 		try {	
 			//TODO: this is making a 500 error, must capture better this error
@@ -131,11 +143,17 @@ public class MeetupREST {
 				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 			}
 			
+			LocalDate auxDate = meetup.get().getDateFrom().toLocalDateTime().toLocalDate();
+			long dias = DAYS.between(LocalDate.now(), auxDate);
+			if (dias >=16) {
+				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+			}
+			
 			List<Temperature> t = temperatureServiceImpl.findByDate(meetup.get().getDateFrom());
 			if (t.size() > 0) {
 				if (!temperatureServiceImpl.saveTemperature(Timestamp.valueOf(meetup.get().getDateFrom().toLocalDateTime().toLocalDate().atStartOfDay()), Timestamp.valueOf(LocalDateTime.now()))) {
 					//return ResponseEntity.ok(quantityBirras(t, meetupUsersServiceImpl.findAllByMeetup(idMeetup).size()));
-					return ResponseEntity.ok(quantityBirras(t, meetupUsersServiceImpl.findByMeetup(meetup.get()).size()));
+					return ResponseEntity.ok(quantityBirras(t, meetupUsersServiceImpl.findByMeetup(meetup.get()).size(), userAux.get()));
 				}
 			}
 			
@@ -164,7 +182,7 @@ public class MeetupREST {
 			}
 			t = temperatureServiceImpl.findByDate(meetup.get().getDateFrom());
 			if (t.size() > 0) {
-				return ResponseEntity.ok(quantityBirras(t, meetupUsersServiceImpl.findByMeetup(meetup.get()).size()));
+				return ResponseEntity.ok(quantityBirras(t, meetupUsersServiceImpl.findByMeetup(meetup.get()).size(), userAux.get()));
 			} else {
 				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 			}

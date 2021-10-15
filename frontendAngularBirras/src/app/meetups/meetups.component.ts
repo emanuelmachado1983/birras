@@ -137,6 +137,30 @@ export class MeetupsComponent implements OnInit {
     this.router.navigate(["administrateMeetup"]);
   }
 
+  mostrarTemperatura(idMeetup): void {
+    this.apiService.getTemperature(idMeetup).subscribe(
+      result => {
+        let res:any = result;
+        if (res == null) {
+          this.translate.get('aclaracionAlertNoHayTemperatura').subscribe(res => { alert (res); });
+        } else {
+          let temperature = res.temperature;
+          if (temperature != null && temperature != '') {
+            this.translate.get('aclaracionAlertHayTemperatura').subscribe(res => { alert (res + temperature); });
+          } else {
+            this.translate.get('aclaracionAlertNoHayTemperatura').subscribe(res => { alert (res); });
+          }
+        }
+        
+      },
+      error  => {
+        if (error!= null) {
+          
+        }
+      }
+    );
+  }
+
   goToNewMeetup():void {
     this.router.navigate(["newMeetup"]);
   }

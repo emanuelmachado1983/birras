@@ -42,6 +42,8 @@
     "cantidadCajasBirra": "Quantity birras boxes",
     "noSePudoObtenerLaTemperatura": "Couldn't obtain temperature.",
     "TenerEnCuentaTemperatura": "You must to know that if the date is bigger than 16 days maybe we will not know the temperature.",
+    "aclaracionAlertNoHayTemperatura": "Could not get temperature. Keep in mind that if the date is more than 16 days, we may not have the temperature yet.",
+    "aclaracionAlertHayTemperatura": "The temperature at that meetup is going to be: ",
     "aclaracionRecuperoDeUsuario1": "Important: This should send an email to the user with the user's name.",
     "aclaracionRecuperoDeUsuario2": "I wouldn't send it to prod like that. I would send an email as corresponds to the user. I ran out of time.",
     "aclaracionModificarPassword1" : "Important clarification: This should send an email to the user with a token so that they can modify the pass.",

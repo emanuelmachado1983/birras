@@ -56,6 +56,7 @@
                 <div class="col-12 col-md-3">
                     <button class ="mb-1" mat-raised-button (click)="deleteFromMeetup(meetupIam.id)"> {{"rowTablaSalirme" | translate}}</button> &nbsp;
                     <button class ="mb-1" mat-raised-button *ngIf="administrador" (click)="goToAdministrateMeetup(meetupIam.id)">{{"rowTablaAdministrar" | translate}}</button>
+                    <button mat-raised-button *ngIf="!administrador" (click)="mostrarTemperatura(meetupIam.id)">°C</button>
                     <button mat-raised-button *ngIf="meetupIam.canCheck" (click)="chekInOut(meetupIam.idMeetupUser)">
                         <span *ngIf="meetupIam.checked">CHECK-IN</span>
                         <span *ngIf="!meetupIam.checked">CHECK-OUT</span>
@@ -105,6 +106,7 @@
                     <div class="col-12 col-md-3">
                         <button mat-raised-button (click)="addToMeetup(meetupNotIam.id)">{{"rowTablaAgregarme" | translate}}</button> &nbsp;
                         <button mat-raised-button *ngIf="administrador" (click)="goToAdministrateMeetup(meetupNotIam.id)">{{"rowTablaAdministrar" | translate}}</button>
+                        <button mat-raised-button *ngIf="!administrador" (click)="mostrarTemperatura(meetupNotIam.id)">°C</button>
                     </div>
                 </div>
             </div>
